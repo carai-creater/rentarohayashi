@@ -97,6 +97,46 @@ button,
   50% { opacity: 1; }
 }
 
+/* Bold cosmic zoom-in when the site appears */
+body:not(.site-enter) .cosmos-bg {
+  transform: scale(1.15);
+  opacity: 0;
+}
+body.site-enter .cosmos-bg {
+  animation: cosmos-enter 1.1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+body.site-enter .stars {
+  animation: stars-enter 1.1s cubic-bezier(0.19, 1, 0.22, 1) forwards, twinkle 4s ease-in-out infinite 1.1s;
+}
+@keyframes cosmos-enter {
+  0% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+@keyframes stars-enter {
+  0% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+}
+
 body {
   margin: 0;
   font-family: var(--font-sans);
