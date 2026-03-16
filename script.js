@@ -10,10 +10,11 @@
         document.body.classList.add('intro-done');
       }
     });
+    // Slightly longer intro before revealing the main content
     setTimeout(function () {
       introOverlay.classList.add('done');
       document.body.classList.add('intro-done');
-    }, 5000);
+    }, 8000);
   }
 
   // ----- Hero slider -----
