@@ -1,21 +1,10 @@
 (function () {
   'use strict';
 
-  // ----- Opening: arrival on Earth — remove overlay when done -----
-  var introOverlay = document.getElementById('intro-overlay');
-  if (introOverlay) {
-    introOverlay.addEventListener('animationend', function (e) {
-      if (e.animationName === 'intro-overlay-out') {
-        introOverlay.classList.add('done');
-        document.body.classList.add('intro-done');
-      }
-    });
-    // Slightly longer intro before revealing the main content
-    setTimeout(function () {
-      introOverlay.classList.add('done');
-      document.body.classList.add('intro-done');
-    }, 8000);
-  }
+  // ----- Site entrance animation -----
+  window.addEventListener('load', function () {
+    document.body.classList.add('site-enter');
+  });
 
   // ----- Hero slider -----
   var slides = document.querySelectorAll('.hero-slide');

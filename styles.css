@@ -47,135 +47,6 @@ button,
 }
 
 /* ----- Opening: arrival on Earth ----- */
-.intro-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: #050810;
-  animation: intro-overlay-out 7.8s ease-out forwards;
-  pointer-events: auto;
-}
-.intro-overlay.done {
-  pointer-events: none;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.6s ease, visibility 0.6s step-end;
-}
-.intro-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* サイト全体の色味に少し寄せるだけにして、上からのエフェクトはかけない */
-  filter: saturate(1.05) contrast(1.03) brightness(0.96);
-  transform: scale(1.02);
-}
-.intro-veil {
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  opacity: 0;
-  animation: intro-veil 7.8s ease-out forwards;
-}
-/* subtle cosmic grain/light overlay on top of the video */
-.intro-overlay::before {
-  content: '';
-  position: absolute;
-  inset: -40px;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% -10%, rgba(94, 184, 255, 0.35) 0%, transparent 55%),
-    radial-gradient(circle at -10% 110%, rgba(10, 30, 60, 0.6) 0%, transparent 65%),
-    radial-gradient(circle at 110% 80%, rgba(10, 25, 55, 0.7) 0%, transparent 65%);
-  mix-blend-mode: screen;
-  opacity: 0.0;
-  animation: intro-glow 7.8s ease-out forwards;
-}
-/* vignette on the very top layer so the edges feel closer to the page background */
-.intro-overlay::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 120% 120% at 50% 50%, transparent 40%, rgba(3, 5, 10, 0.95) 90%);
-  opacity: 1;
-  animation: intro-vignette 7.8s ease-out forwards;
-}
-@keyframes intro-veil {
-  0%, 78% { opacity: 0; }
-  92% { opacity: 1; }
-  100% { opacity: 1; }
-}
-@keyframes intro-video-zoom {
-  0% {
-    transform: scale(1.03);
-    filter: saturate(1.15) contrast(1.08) brightness(0.9);
-  }
-  60% {
-    transform: scale(1.08);
-    filter: saturate(1.18) contrast(1.12) brightness(0.98);
-  }
-  100% {
-    transform: scale(1.05);
-    filter: saturate(1.1) contrast(1.05) brightness(0.96);
-  }
-}
-@keyframes intro-glow {
-  0% {
-    opacity: 0.0;
-  }
-  40% {
-    opacity: 0.7;
-  }
-  80% {
-    opacity: 0.4;
-  }
-  100% {
-    opacity: 0.0;
-  }
-}
-@keyframes intro-vignette {
-  0% {
-    opacity: 0.0;
-  }
-  30% {
-    opacity: 0.5;
-  }
-  80% {
-    opacity: 0.95;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes intro-overlay-out {
-  0%, 100% { opacity: 1; }
-}
-
-body:not(.intro-done) .header,
-body:not(.intro-done) main {
-  opacity: 0;
-  transform: scale(0.96) translateY(12px);
-  transform-origin: center center;
-}
-body.intro-done .header,
-body.intro-done main {
-  animation: intro-content-in 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-}
-@keyframes intro-content-in {
-  from {
-    opacity: 0;
-    transform: scale(0.96) translateY(12px);
-    filter: blur(6px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    filter: blur(0);
-  }
-}
 
 /* ----- Cosmic background (starfield) ----- */
 .cosmos-bg {
@@ -235,6 +106,75 @@ body {
   background: var(--color-bg);
   position: relative;
   font-feature-settings: "palt" 1;
+}
+
+/* Subtle page-wide entrance on load */
+body:not(.site-enter) .header,
+body:not(.site-enter) .hero,
+body:not(.site-enter) .quick-links,
+body:not(.site-enter) .news-section,
+body:not(.site-enter) .content-blocks,
+body:not(.site-enter) .pickup-section,
+body:not(.site-enter) .faq-section,
+body:not(.site-enter) .two-col-section,
+body:not(.site-enter) .cta-section,
+body:not(.site-enter) .footer {
+  opacity: 0;
+  transform: scale(0.96) translateY(8px);
+  transform-origin: center center;
+  filter: blur(8px);
+}
+body.site-enter .header,
+body.site-enter .hero,
+body.site-enter .quick-links,
+body.site-enter .news-section,
+body.site-enter .content-blocks,
+body.site-enter .pickup-section,
+body.site-enter .faq-section,
+body.site-enter .two-col-section,
+body.site-enter .cta-section,
+body.site-enter .footer {
+  animation: site-enter 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+body.site-enter .hero {
+  animation-delay: 0.02s;
+}
+body.site-enter .quick-links {
+  animation-delay: 0.08s;
+}
+body.site-enter .news-section {
+  animation-delay: 0.14s;
+}
+body.site-enter .content-blocks {
+  animation-delay: 0.2s;
+}
+body.site-enter .pickup-section {
+  animation-delay: 0.26s;
+}
+body.site-enter .faq-section {
+  animation-delay: 0.32s;
+}
+body.site-enter .two-col-section {
+  animation-delay: 0.38s;
+}
+body.site-enter .cta-section {
+  animation-delay: 0.44s;
+}
+body.site-enter .footer {
+  animation-delay: 0.5s;
+}
+@keyframes site-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+    transform-origin: center center;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0);
+  }
 }
 main {
   position: relative;
